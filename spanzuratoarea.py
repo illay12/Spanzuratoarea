@@ -18,7 +18,7 @@ class Spanzuratorea:
 
     def play(self):
         """The main loop of the game."""
-        self._get_word()
+        self.get_word()
         while True:
             print(*self.word_displayed)
             letter = input("Enter a letter:")
@@ -27,7 +27,7 @@ class Spanzuratorea:
             elif letter in self.word_displayed:
                 print(f"You have already entered the letter {letter}")
             elif letter in self.word:
-                self._fit_letter(letter)
+                self.fit_letter(letter)
             else:
                 print("Try again!")
                 self.tries -= 1
@@ -58,14 +58,14 @@ class Spanzuratorea:
             print(f"'{self.word}' was the word.")
             return True
 
-    def _fit_letter(self,letter):
+    def fit_letter(self,letter):
         """Puts in a letter that was guessed correctly"""
         while self.aux_word.count(letter):
             index = self.aux_word.index(letter)
             self.word_displayed[index] = letter
             self.aux_word[index] = '_'
 
-    def _get_word(self):
+    def get_word(self):
         """Asks the user for a word to be guessed."""
         self.word = input("Enter a word that someone has to guess:\n")
         self.word_displayed = list(len(self.word) * '_')
@@ -80,5 +80,6 @@ class Spanzuratorea:
             self.aux_word[index] = "_"
             print(self.aux_word)
 
-sp = Spanzuratorea()
-sp.game()
+if __name__ == '__main__':
+    sp = Spanzuratorea()
+    sp.game()
